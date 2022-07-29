@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Weather Forecast</title>
+    <!-- Styling the Weather App  -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+       
+        body {
+            background: url('https://images.wallpaperscraft.com/image/single/lightning_thunderstorm_cloudy_126444_1440x900.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            overflow: hidden;
+            height: 100vh;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .container {
+            padding: 20px 70px;
+            color: rgb(0, 0, 0);
+        }
+
+        .current-information {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 3px;
+        }
+
+        .date-container {
+            font-weight: 100;
+            margin: auto;
+
+        }
+
+        .date-container .time {
+            font-size: 51px;
+            color: lavender;
+        }
+
+        .date-container #am-pm {
+            font-size: 30px;
+            margin-left: 20px;
+
+        }
+
+        .date-container .date {
+            font-size: 30px;
+            color: lavender;
+            padding-left: 28px;
+        }
+
+
+        .current-information .others {
+            display: flex;
+            align-content: center;
+            flex-direction: column;
+            color: lavender;
+            background: rgba(24, 24, 27, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 40px 30px 55px rgba(224, 126, 97, 0.467);
+            border: 2px solid lavender;
+            margin: 50px 10px;
+            margin-left: 0%;
+            width: 304px;
+            height: 167px;
+            font-size: 18px;
+        }
+
+        .current-information .others .items {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid lavender;
+            /* padding: 2px; */
+        }
+
+
+        .current .others {
+
+            padding: 10px 5px;
+            margin: 10px 0;
+        }
+
+        .current .today {
+            display: flex;
+            align-items: center;
+            width: 400px;
+            height: 300px;
+            position: absolute;
+            top: 0;
+            margin: 20px;
+
+        }
+
+        .current .today .day {
+            font-size: 27px;
+            padding: 7px 12px;
+            margin-top: 20px;
+            margin-right: 10px;
+            background: transparent;
+            border-radius: 15px;
+            box-shadow: 6px 7px 15px rgba(243, 240, 239, 0.467);
+            text-align: center;
+            color: lavender;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .current .today .Temperature {
+            font-size: 61px;
+            color: lavender;
+            padding: 20px 10px 7px;
+            margin-right: 10px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .day {
+            padding: 5px 15px;
+            border-radius: 10px;
+            border: 2px solid lavender;
+            text-align: center;
+
+        }
+
+        .con {
+            padding-right: 11px;
+            color: lavender;
+            font-size: 28px;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+
+        }
+
+        .weather .forecast-item .Temperature {
+            font-weight: 100;
+        }
+        @media screen and (max-width: 1000px) {
+
+            .date-container{
+                margin-top: 270px;
+                font-size: 10px;
+                margin-left: 0%;
+                width: 300px;
+            }
+            .today{
+                font-size: 20px;
+            }
+            #current-items{
+                width: 250px;
+            }
+            
+
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Creating a div tag for all the class container  -->
+    <div class="container">
+        <div class="current-information">
+            <div class="date-container">
+                <div class="time" id="time">
+                    12:30 <span id="am-pm">PM</span>
+                </div>
+                <!-- Creating a date class  -->
+                <div class="date" id="date">
+                    Monday, 20 June
+                </div>
+                <!-- Creating div tag and classes for Humidity,Pressure,Wind Speed, Wind Direction  -->
+                <div class="others" id="current-items">
+                    <div class="items">
+                        <div>Humidity</div>
+                        <div>90</div>
+                    </div>
+                    <div class="items">
+                        <div>Pressure</div>
+                        <div>100</div>
+                    </div>
+                    <div class="items">
+                        <div>Wind Speed</div>
+                        <div>0.12</div>
+                    </div>
+                    <div class="items">
+                        <div>Wind Direction</div>
+                        <div>100</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Creating the div tag and classes for Place, current temperature and weather condition -->
+        <div class="current">
+            <div class="today" id="current-Temperature">
+                <div class="others">
+                    <div class="day">City</div>
+                    <div class="Temperature">&#176; C</div>
+                    <div class="con"> Sunny</div>
+                </div>
+            </div>
+        </div>
+        <!-- Creating a javascript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+            integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script>
+            // Selecting the elements from html
+            const timeElement = document.getElementById('time');
+            const dateElement = document.getElementById('date');
+            const currentWeatherItemsEl = document.getElementById('current-items');
+            const currentTemperatureElement = document.getElementById('current-Temperature');
+
+            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            // Setting up the API 
+            const API_KEY = '03a98a937b475893d0fe9e6be08c4ec5';
+            // Setting up the current date, time in 12 hr format, month and day 
+            setInterval(() => {
+                const time = new Date();
+                const month = time.getMonth();
+                const date = time.getDate();
+                const day = time.getDay();
+                const hour = time.getHours();
+                const hoursIn12HrFormat = hour >= 13 ? hour % 12 : hour
+                const minutes = time.getMinutes();
+                const ampm = hour >= 12 ? 'PM' : 'AM'
+
+                timeElement.innerHTML = (hoursIn12HrFormat < 10 ? '0' + hoursIn12HrFormat : hoursIn12HrFormat) + ':' + (minutes < 10 ? '0' + minutes : minutes) + ' ' + `<span id="am-pm">${ampm}</span>`
+
+                dateElement.innerHTML = days[day] + ',' + date + ' ' + months[month]
+            }, 1000);
+
+
+            getWeatherData()
+            function getWeatherData() {
+                let cityname = "New York";
+                // Fetching data from API 
+                fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityname}&units=metric&appid=${API_KEY}`).then(res => res.json()).then(data => {
+
+                    console.log(data)
+                    showWeatherData(data);
+                    getImage(data);
+                })
+            }
+
+            // Fetching data like humidity, pressure, Wind Speed, Wind Direction from API
+            function showWeatherData(data) {
+                let { humidity, pressure } = data.main;
+                let { deg, speed } = data.wind;
+
+                currentWeatherItemsEl.innerHTML =
+                    `<div class="items">
+                        <div class="hum">Humidity</div>
+                            <div>${humidity}%</div>
+                        </div>
+                    <div class="items">
+                         <div>Pressure</div>
+                        <div>${pressure}hPa</div>
+                     </div>
+                    <div class="items">
+                        <div class="hum">Wind Speed</div>
+                        <div>${speed}m/s</div>
+                    </div>
+                    <div class="items">
+                        <div>Wind Direction</div>
+                        <div>${deg} &#176;</div>
+                    </div>   
+                    `;
+                // Fetching data like temperature,  weather condition and city name from API
+                let { temp } = data.main;
+                let { main } = data.weather[0];
+                let { name } = data
+                currentTemperatureElement.innerHTML = `
+            
+                    <div class="other">
+                        <div class="day"> ${name}</div>
+                        <div class="Temperature"> ${temp}&#176;C</div>
+                        <div class="con">${main}</div>
+                        
+                    </div>
+                    
+                    `
+            }
+            // creating function thats changes the background image according to the weather condition
+            function getImage(data) {
+                let { main } = data.weather[0];
+                if (main == 'Clear') {
+                    document.body.style.backgroundImage = "url('https://images.unsplash.com/photo-1525490829609-d166ddb58678?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fHN1bnxlbnwwfHwwfHw%3D&w=1000&q=80')";
+                }
+                if (main == 'Clouds') {
+                    document.body.style.backgroundImage = "url('https://images.wallpaperscraft.com/image/single/lightning_thunderstorm_cloudy_126444_1440x900.jpg')";
+                }
+                if (main == 'Storm') {
+                    document.body.style.backgroundImage = "url('https://wtop.com/wp-content/uploads/2021/07/2021_07_28_lightning2-e1627552312314-1880x1254.jpg')";
+                }
+                if (main == 'Rain') {
+                    document.body.style.backgroundImage = "url('https://media.istockphoto.com/photos/rain-water-drop-falling-to-the-floor-in-rainy-season-picture-id522795232?k=20&m=522795232&s=612x612&w=0&h=8W7uSaNAKhFEpnnD5eYZEoANdjlueG79Lw9A-74ye8M=')";
+                }
+                if (main == 'Mist') {
+                    document.body.style.backgroundImage = "url('https://media.istockphoto.com/photos/rain-water-drop-falling-to-the-floor-in-rainy-season-picture-id522795232?k=20&m=522795232&s=612x612&w=0&h=8W7uSaNAKhFEpnnD5eYZEoANdjlueG79Lw9A-74ye8M=')";
+                }
+            }
+
+
+        </script>
+
+</body>
+
+</html>
